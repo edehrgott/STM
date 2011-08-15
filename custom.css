@@ -1,0 +1,158 @@
+/**
+ * custom.css
+ *
+ * Add your custom styles here instead of style.css so it
+ * is easier to update the theme. Simply copy an existing
+ * style from style.css to this file, and modify it to
+ * your liking. Anything entered here will take precedence
+ * over what is in style.css.
+ * 
+ */
+
+h1 { color: #180509; }
+
+/*** home page sliding doors ***/
+/* big butons */
+#relaxmenu {
+	float: inherit;
+	text-align: center;
+}
+#relaxmenu a {
+	display: block;
+	height: 200px;
+	width: 633px;
+	background: url(/images/body_button.jpg) 0 0 no-repeat;
+}
+#relaxmenu a:hover {
+	background-position: 0px -200px;
+}
+#pleasuremenu {
+	float: inherit;
+	text-align: center;
+}
+#pleasuremenu a {
+	display: block;
+	height: 200px;
+	width: 633px;
+	background: url(/images/pleasure_button.jpg) 0 0 no-repeat;
+}
+#pleasuremenu a:hover {
+	background-position: 0px -200px;
+}
+#passionmenu {
+	float: inherit;
+	text-align: center;
+}
+#passionmenu a {
+	display: block;
+	height: 200px;
+	width: 633px;
+	background: url(/images/passion_button.jpg) 0 0 no-repeat;
+}
+#passionmenu a:hover {
+	background-position: 0px -200px;
+}
+#container {
+	min-width: 900px !important;
+}
+/*** button styling ***/
+a.ovalbutton{
+	background: transparent url('/images/oval-orange-left.gif') no-repeat top left;
+	display: block;
+	float: inherit;
+	font: normal 13px Tahoma; /* Change 13px as desired */
+	line-height: 16px; /* This value + 4px + 4px (top and bottom padding of SPAN) must equal height of button background (default is 24px) */
+	height: 24px; /* Height of button background height */
+	padding-left: 11px; /* Width of left menu image */
+	text-decoration: none;
+}
+a:link.ovalbutton, a:visited.ovalbutton, a:active.ovalbutton{
+color: #494949; /*button text color*/
+}
+a.ovalbutton span{
+background: transparent url('/images/oval-orange-right.gif') no-repeat top right;
+display: block;
+padding: 4px 11px 4px 0; /*Set 11px below to match value of 'padding-left' value above*/
+}
+a.ovalbutton:hover{ /* Hover state CSS */
+background-position: bottom left;
+}
+a.ovalbutton:hover span{ /* Hover state CSS */
+background-position: bottom right;
+color: black;
+}
+.buttonwrapper{ /* Container you can use to surround a CSS button to clear float */
+overflow: hidden; /*See: http://www.quirksmode.org/css/clearing.html */
+width: 100%;
+}
+/*** sidebar box classes ***/
+.sidebarbox {
+	font-size: x-small;
+	line-height: 1.4em;
+	border-style: solid;
+	border-width: 1px;
+	background-color: rgb(245, 222, 179);
+}
+.brown_table_head {  /*for right col table headers*/
+	text-align: center;
+	color: rgb(255, 255, 255);
+	background-color: rgb(139, 54, 38);
+	font-size: small;
+	font-weight: bold;
+	height: 35px;
+}
+.green_table_head {  /*for right col table headers*/
+	text-align: center;
+	color: rgb(255, 255, 255);
+	background-color: rgb(102, 107, 35);
+	font-size: small;
+	font-weight: bold;
+	height: 35px;
+}
+.yellow_table_head {  /*for right col table headers*/
+	text-align: center;
+	color: rgb(255, 255, 255);
+	background-color: rgb(218, 165, 32);
+	font-size: small;
+	font-weight: bold;
+	height: 35px;
+}
+.sidebarcontent {
+       	text-align: left;
+}
+/*** other misc stuff ***/
+.text_box {
+	border-style: solid;
+	border-width: 1px;
+	padding: 4px;
+}
+.style2 {
+	border-color: gray;
+	border-width: 1px;
+ 	border-collapse: collapse;
+	border-style: solid;
+}
+.price_table_head {
+	width: 33%; 
+	color: #FFFFFF; 
+	background-color : #180509;
+	border-color: gray;
+	border-width: 1px;
+	border-collapse: collapse;
+	border-style: solid;
+}
+.price_table_info {
+	width: 33%; 
+	color: #000000; 
+	background-color : #F5DEB3;
+	border-color: gray;
+	border-width: 1px;
+	border-collapse: collapse;
+	border-style: solid;
+}
+#events ul, ul ul, ul ul ul{  /* overload ul styles for gig events list */
+	list-style:none outside none;
+}
+hr {
+    color: #180509;
+}

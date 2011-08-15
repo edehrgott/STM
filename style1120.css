@@ -1,0 +1,47 @@
+﻿/*
+www.sacredtouchformen.com
+overriding styles for small (<1120 wide) scrrens
+*/  
+
+#container {
+	min-width: 900px !important;
+}
+#relaxmenu {
+	float: inherit;
+	text-align: center;
+}
+#relaxmenu a {
+	display: block;
+	height: 150px;
+	width: 475px;
+	background: url(/images/body_button_sm.jpg) 0 0 no-repeat;
+}
+#relaxmenu a:hover {
+	background-position: 0px -150px;
+}
+#pleasuremenu {
+	float: inherit;
+	text-align: center;
+}
+#pleasuremenu a {
+	display: block;
+	height: 150px;
+	width: 475px;
+	background: url(/images/pleasure_button_sm.jpg) 0 0 no-repeat;
+}
+#pleasuremenu a:hover {
+	background-position: 0px -150px;
+}
+#passionmenu {
+	float: inherit;
+	text-align: center;
+}
+#passionmenu a {
+	display: block;
+	height: 150px;
+	width: 475px;
+	background: url(/images/passion_button_sm.jpg) 0 0 no-repeat;
+}
+#passionmenu a:hover {
+	background-position: 0px -150px;
+}
