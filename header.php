@@ -3,21 +3,22 @@
 <head>
 <meta http-equiv="content-type" content="<?php bloginfo('html_type') ?>; charset=<?php bloginfo('charset') ?>" />
 <title>
-<?php if (function_exists('is_tag') && is_tag()) {
-single_tag_title('Tag Archive for &quot;'); echo '&quot; - ';
-} elseif (is_archive()) {
-wp_title(''); echo ' Archive - ';
-} elseif (is_search()) {
-echo 'Search for &quot;'.esc_html($s).'&quot; - ';
-} elseif (!(is_404()) && (is_single()) || (is_page())) {
-wp_title(''); echo ' - ';
-} elseif (is_404()) {
-echo 'Not Found - ';
-}
-if (is_home()) {
-bloginfo('name'); echo ' - '; bloginfo('description');
+<?php
+if (is_front_page()) {
+bloginfo('description'); echo ' - '; bloginfo('name');
 } else {
-bloginfo('name');
+	if (function_exists('is_tag') && is_tag()) {
+	single_tag_title('Tag Archive for &quot;'); echo '&quot; - ';
+	} elseif (is_archive()) {
+	wp_title(''); echo ' Archive - ';
+	} elseif (is_search()) {
+	echo 'Search for &quot;'.esc_html($s).'&quot; - ';
+	} elseif ( !(is_404()) && (is_single()) || (is_page())) {
+	wp_title(''); echo ' - ';
+	} elseif (is_404()) {
+	echo 'Not Found - ';
+	} 
+	bloginfo('name');
 }
 if ($paged > 1) {
 echo ' - page '. $paged;
@@ -30,13 +31,6 @@ echo ' - page '. $paged;
 <link rel="stylesheet" type="text/css" href="<?php bloginfo('stylesheet_url'); ?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_directory_uri() . '/fancybox/jquery.fancybox-1.3.1.css'; ?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_directory_uri() . '/custom.css'; ?>" />
-<?php if( (is_front_page()) ) {  // for home page only ?>
-	<script type="text/javascript">
-	if (screen.width < 1120)
-	   document.write('<' + 'link rel="stylesheet" href="' + '<?php echo get_template_directory_uri(); ?>' + '/style1120.css" type="text/css" />');
-	</script>
-<?php } ?>
-
 <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 
 <?php if ( is_singular() ) wp_enqueue_script( 'comment-reply' );

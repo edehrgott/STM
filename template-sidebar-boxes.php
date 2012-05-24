@@ -32,7 +32,8 @@ Template Name: Page w/ Sidebar Boxes
 		<table class="sidebarbox">
                <tr>
                   <td class="green_table_head">
-                     <?php echo $greenboxtitle; ?></td>
+                     <?php echo $greenboxtitle; ?>
+			   </td>
                </tr>
                <tr>
                   <td class="sidebarcontent">
@@ -103,6 +104,7 @@ Template Name: Page w/ Sidebar Boxes
 		<div id="passionmenu">
 		  <p align="center"><a href="/html/passion.html" id="clickable_inline" title="Find your passion"></a></p>
 		</div>
+		<p align="center"><?php sfc_like_button(); ?></p>
 	   <?php } ?>	   
 	   <?php the_post_thumbnail('thumbnail', array('class' => 'alignleft')); ?>
 	   <?php the_content(__('Read more', 'tpSunrise'));?>
@@ -130,24 +132,111 @@ Template Name: Page w/ Sidebar Boxes
 			  echo "<span class=\"widget widget_gigpress\">" . gigpress_sidebar($options) . "</span>";
 			  echo "</span>";
 		   ?>
-               </span>
+		  </span>
 		   <div id="recent_posts">
-		   <h2>Recent Blog Posts</h2>
-		   <?php $args = array( 'numberposts' => 5 );
+		   <h2><a href="/my-blog/">Recent Blog Posts</a></h2>
+		   <?php $args = array( 'numberposts' => 4 );
+		   global $post;
 		   $recent_posts_array = get_posts( $args );
-		   foreach( $recent_posts_array as $post ) :	setup_postdata($post); ?>
-			   <li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a><br />
-			   <div id="recent_posts_meta">
-				by <?php the_author(); ?>, posted on <?php the_time('l, F jS, Y'); ?> | <?php comments_number(__('No Comments', 'tpSunrise'), __('1 Comment', 'tpSunrise'), '% ' . __('Comments', 'tpSunrise'));?><br />
-			   </div>
-			   <?php the_excerpt(); ?>				
+		   foreach( $recent_posts_array as $post ) : setup_postdata($post); ?>
+			<li class="recent_posts_item"><a href="<?php the_permalink(); ?>" class="recent_posts_title"><?php the_title(); ?></a><br />
+			<div id="recent_posts_meta">
+			   <p>Posted by <?php the_author(); ?> on <?php the_time('F j, Y'); ?><br />
+			</div>
+			<?php the_post_thumbnail('thumbnail', array('class' => 'alignleft')); ?>			
+			<?php the_excerpt(); ?>
+			<a href="<?php the_permalink(); ?>">Read The Full Post</a>
 		   <?php endforeach; ?>
 		   </div>
-		   <br />			
+		
 		<?php } ?>
 	   
 	   </div> <!-- page content -->
          
 	   </div> <!-- container -->
 	   
-	   <?php get_footer(); ?>
+	   <?php if( is_front_page() ) {  // for home page only - script to control clickable image resizing ?>	
+		<script type="text/javascript">
+		jQuery(document).ready(function() {
+	     
+		function imageresize() {
+		   var contentwidth = jQuery('#page_content').width();
+		   if ((contentwidth) < '660'){ // little window
+			jQuery('#relaxmenu a').css({
+			   'height': '150px',
+			   'width': '475px',
+			   'background': 'url(/images/body_button_sm.jpg) 0 0 no-repeat'
+			});
+			jQuery('#pleasuremenu a').css({
+			   'height': '150px',
+			   'width': '475px',
+			   'background': 'url(/images/pleasure_button_sm.jpg) 0 0 no-repeat'
+			});
+			jQuery('#passionmenu a').css({
+			   'height': '150px',
+			   'width': '475px',
+			   'background': 'url(/images/passion_button_sm.jpg) 0 0 no-repeat'
+			});
+			// handle hovers - adjust sliding windows
+			jQuery('#relaxmenu a').mouseenter(function(){
+			   jQuery(this).css('background-position', '0px -150px');
+			}).mouseleave(function(){
+			   jQuery(this).css('background-position', '0 0');
+			});
+			jQuery('#pleasuremenu a').mouseenter(function(){
+			   jQuery(this).css('background-position', '0px -150px');
+			}).mouseleave(function(){
+			   jQuery(this).css('background-position', '0 0');
+			});
+			jQuery('#passionmenu a').mouseenter(function(){
+			   jQuery(this).css('background-position', '0px -150px');
+			}).mouseleave(function(){
+			   jQuery(this).css('background-position', '0 0');
+			});			
+			
+		   } else { // big window
+			jQuery('#relaxmenu a').css({
+			   'height': '200px',
+			   'width': '633px',
+			   'background': 'url(/images/body_button.jpg) 0 0 no-repeat'
+			});
+			jQuery('#pleasuremenu a').css({
+			   'height': '200px',
+			   'width': '633px',
+			   'background': 'url(/images/pleasure_button.jpg) 0 0 no-repeat'
+			});
+			jQuery('#passionmenu a').css({
+			   'height': '200px',
+			   'width': '633px',
+			   'background': 'url(/images/passion_button.jpg) 0 0 no-repeat'
+			});
+			// handle hovers - adjust sliding windows
+			jQuery('#relaxmenu a').mouseenter(function(){
+			   jQuery(this).css('background-position', '0px -200px');
+			}).mouseleave(function(){
+			   jQuery(this).css('background-position', '0 0');
+			});
+			jQuery('#pleasuremenu a').mouseenter(function(){
+			   jQuery(this).css('background-position', '0px -200px');
+			}).mouseleave(function(){
+			   jQuery(this).css('background-position', '0 0');
+			});
+			jQuery('#passionmenu a').mouseenter(function(){
+			   jQuery(this).css('background-position', '0px -200px');
+			}).mouseleave(function(){
+			   jQuery(this).css('background-position', '0 0');
+			});
+			
+		   }
+            };
+		  
+		imageresize(); // triggers when document first loads    
+		jQuery(window).bind("resize", function(){ // when browser resized
+		   imageresize();
+		});
+		
+		});
+		</script>
+	   <?php } 
+	   
+	   get_footer(); ?>

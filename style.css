@@ -13,19 +13,40 @@ Version:        0.1.0
 #masthead a {
     color: #180509;
 }
+#left_col ul li a {
+    color: #363636;
+    font-weight: bold;
+    text-decoration: none;
+}
+#left_col ul li a:hover {
+    color: #000;
+    font-weight: bold;
+    text-decoration: none;
+}
 #recent_posts {
-    border-style: solid;
-    border-width: 1px;
+    border-top: 1px solid #180509;
     padding: 4px;
-}
-#recent_posts a {
-    font-size: 110%;
-}
-#recent_posts li {
-    list-style: none;
-    margin: 0px;
-    padding: 5px;
 }
 #recent_posts_meta {
     font-size: 75%;
+}
+.recent_posts_title {
+    font-size: 130%;
+}
+.recent_posts_item {
+    width: 45%;
+    display: block;
+    border-bottom: 1px solid #180509;
+    padding: 10px 5px 10px 5px;
+}
+#recent_posts li {
+    list-style: none;
+    margin: 0 0 20px 0;
+}
+#recent_posts li:nth-child(even) {
+    float: left;
+    clear: both;
+}
+#recent_posts li:nth-child(odd) {
+    float: right;
 }

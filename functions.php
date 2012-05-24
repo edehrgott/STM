@@ -3,20 +3,22 @@
  * STM child functions.php
  *
  */
-// theme requires jQuery - need to enqueue here even though called in parent theme because of fancybox calls here
-wp_enqueue_script('jquery');
 
-if ( !is_admin() ) { //superfish scripts aren't needed for admin area
-	// added by ed for fancybox
-	wp_register_script('fancybox', get_stylesheet_directory_uri() . '/fancybox/jquery.fancybox-1.3.1.pack.js' );
-	wp_register_script('fancybox-easing', get_stylesheet_directory_uri() . '/fancybox/jquery.easing-1.3.pack.js' );
-	wp_register_script('fancybox-local', get_stylesheet_directory_uri() . '/fancybox/fancybox_local.js' ); // added by ed for jquery popup compatability
-	// enqueue the scripts
-	wp_enqueue_script('fancybox');
-	wp_enqueue_script('fancybox-easing');
-	wp_enqueue_script('fancybox-local');
+// register all scripts
+function STM_scripts() {
+	 // theme requires jQuery - need to enqueue here even though called in parent theme because of fancybox calls here
+	 wp_enqueue_script( 'jquery' );
+	 wp_register_script('fancybox', get_stylesheet_directory_uri() . '/fancybox/jquery.fancybox-1.3.1.pack.js' );
+	 wp_register_script('fancybox-easing', get_stylesheet_directory_uri() . '/fancybox/jquery.easing-1.3.pack.js' );
+	 wp_register_script('fancybox-local', get_stylesheet_directory_uri() . '/fancybox/fancybox_local.js' ); // added by ed for jquery popup compatability
+	 // enqueue the scripts
+	 wp_enqueue_script('fancybox');
+	 wp_enqueue_script('fancybox-easing');
+	 wp_enqueue_script('fancybox-local');
 }
 
+add_action( 'wp_enqueue_scripts', 'STM_scripts' );
+ 
 // simple replace filter to add ID attribute to the <a> occurence for the calendar popup in wp_page_menu - added by Ed 
 function add_menu_cal_id($a_id) {
 	return preg_replace('<a href="http://html/calendar.html">', 'a href="/html/calendar.html" id="cal_popup" title="My Calendar"', $a_id, 1);
@@ -74,5 +76,38 @@ if ( !function_exists('tpSunrise_customisetheme_setup') ):
         register_default_headers($customHeaders);
     }
 endif;
+
+function stm_custom_login_logo() {
+    echo '<style type="text/css">
+        h1 a { background-image:url(/images/stm_wp_login.png) !important; }
+    </style>';
+}
+
+add_action('login_head', 'stm_custom_login_logo');
+
+wp_register_Script('flowplayer', get_stylesheet_directory_uri() . '/js/flowplayer-3.2.6.min.js' ); // flowplayer
+wp_enqueue_script('flowplayer');
+wp_register_Script('flowplayer-ipad', get_stylesheet_directory_uri() . '/js/flowplayer.ipad-3.2.2.min.js' ); // flowplayer ipad
+wp_enqueue_script('flowplayer-ipad');
+	
+// add shortcode for flowplayer
+function stm_flowplayer_vid($fp_atts) {
+   extract(shortcode_atts(array(
+      'name' => "", // default is empty
+   ), $fp_atts));
+   $fp_vid_name = '/media/' . $name;
+   $rand = rand(1,100); // generate random number for multiple instances on same page
+   
+   return '<a href="' . site_url() . $fp_vid_name . '" style="display:block;width:640px;height:480px;" id="player' . $rand . '"></a>
+      <script>
+      flowplayer("player' . $rand . '", "/media/flowplayer-3.2.7.swf",  {
+         clip: {
+               autoPlay: false,
+			   autoBuffering: false
+         }
+      }).ipad();</script>';
+      
+}
+add_shortcode('vid', 'stm_flowplayer_vid');
 
 ?>
